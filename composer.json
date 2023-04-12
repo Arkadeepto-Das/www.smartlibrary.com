@@ -1,0 +1,11 @@
+{
+    "autoload": {
+        "classmap": [
+            "classes"
+        ]
+    },
+
+    "require": {
+        "vlucas/phpdotenv": "^5.5"
+    }
+}
