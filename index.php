@@ -13,15 +13,21 @@
 <body>
   <div class="container">
     <h1>Login</h1>
-    <form action="login.php">
+    <form>
       <label for="username">Username: </label>
       <input type="text" name="username" id="username" required>
+      <br>
+      <span class="error" id="userErr"></span>
       <br><br>
       <label for="password">Password: </label>
-      <input type="text" name="password" id="password" required>
+      <input type="password" name="password" id="password" required>
+      <br>
+      <span class="error" id="passwordErr"></span>
       <br><br>
-      <input type="submit" name="login" id="submit">
+      <input type="button" name="login" id="login" value="Login">
     </form>
   </div>
 </body>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="Scripts/ajax_user.js"></script>
 </html>
