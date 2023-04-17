@@ -111,7 +111,7 @@ div.container a.google {
   padding: 0px 2px;
 }
 
-div.container form input[type=submit], #google {
+div.container form input[type=button], #google {
   padding: 10px;
   background-color: #ca00edad;
   color: white;
@@ -127,7 +127,7 @@ div.container form input[type=submit], #google {
   cursor: pointer;
 }
 
-div.container form input[type=submit]:hover, #google:hover {
+div.container form input[type=button]:hover, #google:hover {
   background-color: #8f00a8ad;
   transition: 0.5s;
 }

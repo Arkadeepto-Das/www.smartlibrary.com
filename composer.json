@@ -1,7 +1,9 @@
 {
     "autoload": {
         "classmap": [
-            "classes"
+            "classes/EnvHandler.php",
+            "classes/Database.php",
+            "classes/Validation.php"
         ]
     },
 
