@@ -28,7 +28,7 @@ $(document).ready(function() {
         type: "post",
         datatype: "html",
         data: {
-          bookId: $(this).attr('add');
+          bookId: $(this).attr('add')
         },
         success: function() {
           
