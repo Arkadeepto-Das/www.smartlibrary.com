@@ -1,8 +1,4 @@
 <?php
-  require 'vendor/autoload.php';
-  use PHPMailer\PHPMailer\PHPMailer;
-  use PHPMailer\PHPMailer\SMTP;
-  use PHPMailer\PHPMailer\Exception;
   /**
    * Check the format of user input data.
    * 
@@ -16,7 +12,6 @@
    *     This function sends the OTP to the Email-ID.
    */
   class Validation {
-
     /**
      * This function checks Email-ID of the user.
      * 
@@ -46,9 +41,7 @@
       $password) == 1) {
         return TRUE;
       }
-      else {
-        return FALSE;
-      }
+      return FALSE;
     }
   }
 ?>
