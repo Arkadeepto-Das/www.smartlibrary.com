@@ -12,7 +12,6 @@
   $_SESSION["end"] = 2;
   $listData = [];
   if ($bookList !== NULL) {
-    $listData["readingList"] = $bookList["readingList"];
     $listData["bucketList"] = $bookList["bucketList"];
     require_once 'Templates/reader_list.php';
   }

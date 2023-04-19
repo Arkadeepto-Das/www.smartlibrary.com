@@ -6,9 +6,7 @@ $(document).ready(function() {
       $('#book-names').html(data);
     }
   });
-});
 
-$(document).ready(function() {
   $('#load').on('click', function() {
     $.ajax({
       url: "home_load.php",
@@ -18,22 +16,25 @@ $(document).ready(function() {
       }
     });
   });
-});
 
-$(document).ready(function() {
-  $('button').on('click', function() {
-    if ($(this).attr('add')) {
-      $.ajax({
-        url: "addList.php",
-        type: "post",
-        datatype: "html",
-        data: {
-          bookId: $(this).attr('add')
-        },
-        success: function() {
-          
+  $('.container').on('click', '.add', function() {
+    var attr = $(this).attr('id');
+    var curr = $(this);
+    $.ajax({
+      url: "addToList.php",
+      type: "post",
+      datatype: "html",
+      data: {
+        bookId: attr
+      },
+      success: function(data) {
+        var object = JSON.parse(data);
+        if (object.status == 1) {
+          curr.hide();
+          curr.siblings("p").html(object.message);
+          console.log(curr);
         }
-      });
-    }
+      }
+    });
   });
 });

@@ -20,7 +20,7 @@
     <table id="book-names"></table>
     <button id="load">Load more</button>
   </div>
+</body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="Scripts/ajax_home.js"></script>
-</body>
 </html>

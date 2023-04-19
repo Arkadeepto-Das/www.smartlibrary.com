@@ -22,7 +22,6 @@
      *     Returns TRUE if Email-ID is valid otherwise FALSE.
      */
     public function emailValidation(string $email) {
-      // Email validation.
       return filter_var($email, FILTER_VALIDATE_EMAIL);
     }
 
@@ -36,9 +35,7 @@
      *     Returns TRUE if the password is valid otherwise FALSE.
      */
     public function passwordValidation(string $password) {
-      // Password format validation.
-      if(preg_match("/^(?=.*\d)(?=.*[@#\-_$%^&+=§!\?])(?=.*[a-z])(?=.*[A-Z])[0-9A-Za-z@#\-_$%^&+=!\?]{8,20}$/",
-      $password) == 1) {
+      if (preg_match("/^(?=.*\d)(?=.*[@#\-_$%^&+=§!\?])(?=.*[a-z])(?=.*[A-Z])[0-9A-Za-z@#\-_$%^&+=!\?]{8,20}$/", $password) == 1) {
         return TRUE;
       }
       return FALSE;

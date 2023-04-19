@@ -13,15 +13,10 @@
 <body>
   <div class="container">
     <h4 class="fullname">Full name : </h4>
-    <table id="list">
-      <tr id="book-names">
-        <th>Continue Reading</th>
-        <th>Bucket list</th>
-      </tr>
-    </table>
+    <table id="book_names"></table>
     <a href="home_page.php">Home</a>
   </div>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script src="Scripts/ajax_user.js"></script>
+<script src="Scripts/ajax_reader.js"></script>
 </body>
 </html>

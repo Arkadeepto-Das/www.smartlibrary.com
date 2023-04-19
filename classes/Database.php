@@ -22,7 +22,7 @@
   class Database {
 
     /**
-     *   @var $conn
+     *   @var mysqli_object $conn
      *     Stores the object of database connection.
      */
     private $conn;
@@ -45,6 +45,9 @@
      */
     public function __construct(string $serverName, string $userName, string $password, string $dbName) {  
       $this->conn = $this->connect($serverName, $userName, $password, $dbName);
+      if ($this->conn->connect_error) {
+        die("Connection failed: " . $this->conn->connect_error);
+      }
     }
 
     /**
@@ -104,18 +107,13 @@
      *     if list exists otherwise NULL.
      */
     public function fetchReaderList(string $userName) {
-      $readingList = "SELECT * FROM reading_list WHERE username = '$userName' ORDER BY book_name ASC";
       $bucketList = "SELECT * FROM bucket_list WHERE username = '$userName' ORDER BY book_name ASC";
       $response = [];
-      $result1 = $this->conn->query($readingList);
       $result2 = $this->conn->query($bucketList);
-      if ($result1 && mysqli_num_rows($result1) > 0) {
-        $response["readingList"] = $result1;
-      }
       if ($result2 && mysqli_num_rows($result2) > 0) {
         $response["bucketList"] = $result2;
       }
-      if (count($response) > 0) {
+      if (count($response)) {
         return $response;
       }
       else {
@@ -135,7 +133,7 @@
      *     database.
      */
     public function fetchBookList($end) {
-      $bookList = "SELECT * FROM Books LIMIT 0, $end";
+      $bookList = "SELECT * FROM Books ORDER BY book_name ASC LIMIT 0, $end";
       $result = $this->conn->query($bookList);
       if ($result && mysqli_num_rows($result) > 0) {
         return $result;
@@ -165,22 +163,50 @@
      *   @param string $bookId
      *     Stores the book ID of the book to be added in the reader's bucket
      *     list or wish list.
+     * 
+     *   @return bool
+     *     Returns TRUE if the book is successfully added in the bucket list or
+     *     wish list otherwise returns FALSE.
      */
-    public function addBook(string $userName, string $bookId) {
+    public function addToList(string $userName, string $bookId) {
       $data = "SELECT book_name, author, publication_date FROM Books WHERE book_id = '$bookId'";
       $result = $this->conn->query($data);
       $bookDetails = $result->fetch_assoc();
-      $date = $bookDetails["publication_date"];
-      $bookName = $bookDetails["book_name"];
-      $author = $bookDetails["author"];
-      if ($date !== NULL) {
+      $date = htmlspecialchars($bookDetails["publication_date"], ENT_QUOTES);
+      $bookName = htmlspecialchars($bookDetails["book_name"], ENT_QUOTES);
+      $author = htmlspecialchars($bookDetails["author"], ENT_QUOTES);
+      $add = "";
+      $update = "";
+      if ($date != '') {
         $add = "INSERT INTO bucket_list (username, book_id, book_name, author) VALUES ('$userName', '$bookId', '$bookName', '$author')";
       }
       else {
         $add = "INSERT INTO wish_list (username, book_id, book_name, author) VALUES ('$userName', '$bookId', '$bookName', '$author')";
       }
-      if ($this->conn->query($add) !== TRUE) {
-        echo $conn->error;
+      if ($this->conn->query($add) === TRUE) {
+        $update = "UPDATE Books SET added = 'TRUE' WHERE book_id = '$bookId'";
       }
+      return $this->conn->query($update);
+    }
+
+    /**
+     * This function is used to add new book to the database.
+     * 
+     *   @param string $bookId
+     *     Stores the book ID.
+     *   @param string $bookName
+     *     Stores the name of the book.
+     *   @param string $author
+     *     Stores the name of the author.
+     *   @param string $date
+     *     Stores the publication date of the book.
+     * 
+     *   @return bool
+     *     Returns TRUE if the new book is successfully added in the database
+     *     otherwise returns FALSE.
+     */
+    public function addNewBook(string $bookId, string $bookName, string $author, string $date) {
+      $add = "INSERT INTO Books (book_id, book_name, author, publication_date ) VALUES ('$bookId', '$bookName', '$author', '$date')";
+      return $this->conn->query($add);
     }
   }

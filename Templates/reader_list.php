@@ -1,10 +1,12 @@
+<tr>
+  <th>Bucket list</th>
+</tr>
 <?php
-  while ($row = $listData["readingList"]->fetch_assoc()) {
+  while ($row = $listData["bucketList"]->fetch_assoc()) {
 ?>
   <tr>
-    <td><?php echo $row["Reading"];?></td>
-    <td><?php echo $row["Bucket_list"];?></td>
+    <td><?php echo $row["book_name"];?></td>
   </tr>
 <?php
   }
-  $listData["readingList"]->free_result();
+  $listData["bucketList"]->free_result();

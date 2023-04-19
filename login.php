@@ -11,7 +11,7 @@
   $validate = new Validation();
   $userDetails = $query->userDetails($userName);
   $response = [];
-  if ($userDetails === NULL || $userName != $userDetails["Username"]) {
+  if ($userDetails === NULL || $userName != $userDetails["username"]) {
     $response['status'] = 0;
     $response['userName'] = "Username doesn't exist.";
     echo json_encode($response);
@@ -25,7 +25,7 @@
       exit();
     }
     else {
-      if ($password != $userDetails["Password"]) {
+      if ($password != $userDetails["password"]) {
         $response['status'] = 0;
         $response['password'] = "Incorrect password";
         echo json_encode($response);
@@ -33,8 +33,8 @@
       }
       else {
         $response['status'] = 1;
-        $_SESSION["userName"] = $userDetails["Username"];
-        $response['role'] = $userDetails["Role"];
+        $_SESSION["userName"] = $userDetails["username"];
+        $response['role'] = $userDetails["role"];
         echo json_encode($response);
       }
     }

@@ -3,13 +3,14 @@
   <th>Author</th>
 </tr>
 <?php
-  while ($row = $bookList->fetch_assoc()) {
+  $row = $bookList->fetch_all(MYSQLI_ASSOC);
+  foreach ($row as $value) {
 ?>
   <tr>
-    <td><?php echo $row["Book_name"];?></td>
-    <td><?php echo $row["Author"];?></td>
+    <td><?php echo $value["book_name"];?></td>
+    <td><?php echo $value["author"];?></td>
 <?php
-    if ($row["Added"] == "TRUE") {
+    if ($value["added"] == "TRUE") {
 ?>
     <td>Added</td>
   </tr>
@@ -17,8 +18,10 @@
     }
     else {
 ?>
-    <td><button add="<?php echo $row["Book_ID"];?>">Add</button></td>
-    <td><button remove="<?php echo $row["Book_ID"];?>">Remove</button></td>
+    <td id="<?php echo $value["book_id"];?>">
+      <button class="add" id="<?php echo $value["book_id"];?>">Add</button>
+      <p id="<?php echo $value["book_id"];?>"></p>
+    </td>
   </tr>
 <?php
     }
