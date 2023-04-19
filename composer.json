@@ -1,0 +1,13 @@
+{
+    "autoload": {
+        "classmap": [
+            "classes/EnvHandler.php",
+            "classes/Database.php",
+            "classes/Validation.php"
+        ]
+    },
+
+    "require": {
+        "vlucas/phpdotenv": "^5.5"
+    }
+}
