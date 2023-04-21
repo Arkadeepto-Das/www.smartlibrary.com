@@ -1,0 +1,35 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  background-image: linear-gradient(to top left, #ff52b3, #7ff5ff);
+}
+
+.container {
+  padding: 25px;
+  margin: 0 auto;
+  background-color: #fff7ff96;
+  border-radius: 15px;
+  text-align: center;
+}
+
+.container .fullname {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+}
+
+tr {
+  display: flex;
+  width: 25rem;
+  justify-content: space-around;
+}
+
+th, td {
+  font-family: 'Poppins', sans-serif;
+}
