@@ -1,11 +1,11 @@
 <?php
+  require_once 'vendor/autoload.php';
+  use application\model\Database;
+
   if (!isset($_SESSION)) {
     session_start();
   }
-  require_once 'vendor/autoload.php';
   $bookId = $_POST["bookId"];
-  $env = new EnvHandler();
-  $envArray = $env->fetchEnvValues();
   $query = new Database($envArray["serverName"], $envArray["userName"], $envArray["password"], $envArray["dbName"]);
   $result = $query->addToList($_SESSION["userName"], $bookId);
   $response = [];

@@ -3,7 +3,7 @@ $(document).ready(function() {
     var userName = $('#username').val();
     var password = $('#password').val();
     $.ajax({
-      url: 'login.php',
+      url: '/login',
       type: 'post',
       data: {
         userName : userName,
@@ -18,10 +18,10 @@ $(document).ready(function() {
           $('#passwordErr').text(object.password);
         }
         else if (object.role == "reader") {
-          window.location.href = "reader_page.php";
+          window.location.href = "/reader";
         }
         else {
-          window.location.href = "admin_page.php";
+          window.location.href = "/admin";
         }
       }
     });

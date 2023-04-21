@@ -1,7 +1,11 @@
 $(document).ready(function() {
   $.ajax({
-    url: "home_refresh.php",
+    url: "/home",
+    type: "post",
     datatype: "html",
+    data: {
+      refresh : 1
+    },
     success: function(data) {
       $('#book-names').html(data);
     }
@@ -9,8 +13,12 @@ $(document).ready(function() {
 
   $('#load').on('click', function() {
     $.ajax({
-      url: "home_load.php",
+      url: "/home",
+      type: "post",
       datatype: "html",
+      data: {
+        load : 1
+      },
       success: function(data) {
         $('#book-names').html(data);
       }
@@ -21,10 +29,11 @@ $(document).ready(function() {
     var attr = $(this).attr('id');
     var curr = $(this);
     $.ajax({
-      url: "addToList.php",
+      url: "/home",
       type: "post",
       datatype: "html",
       data: {
+        add : 1,
         bookId: attr
       },
       success: function(data) {

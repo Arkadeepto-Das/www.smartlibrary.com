@@ -1,4 +1,5 @@
 <?php
+  namespace application\model;
   /**
    * Check the format of user input data.
    * 

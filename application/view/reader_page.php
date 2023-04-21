@@ -7,16 +7,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Foundation:wght@400;500&family=Poppins:wght@100;200;300;400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style_reader.css">
+  <link rel="stylesheet" href="public/assets/css/style_reader.css">
   <title>Overview</title>
 </head>
 <body>
-  <div class="container">
-    <h4 class="fullname">Full name : </h4>
-    <table id="book_names"></table>
-    <a href="home_page.php">Home</a>
-  </div>
+  <div class="container"></div>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script src="Scripts/ajax_reader.js"></script>
+<script src="public/assets/scripts/ajax_reader.js"></script>
 </body>
 </html>

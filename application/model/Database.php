@@ -1,4 +1,9 @@
 <?php
+  namespace application\model;
+
+  use application\model\EnvHandler;
+  use mysqli;
+  
   /**
    * This class connects to the database and sends query to the database.
    * 
@@ -31,20 +36,13 @@
      * Constructor is used to connect to the database and store the object of
      * the database in a class variable after successfully connecting.
      * 
-     *   @param string $serverName
-     *     Stores the servername.
-     *   @param string $userName
-     *     Stores the username.
-     *   @param string $password
-     *     Stores the password of the database.
-     *   @param string $dbName
-     *     Stores the name of the database.
-     * 
      *   @return void
      *     Only stores the object of the database.
      */
-    public function __construct(string $serverName, string $userName, string $password, string $dbName) {  
-      $this->conn = $this->connect($serverName, $userName, $password, $dbName);
+    public function __construct() {
+      $env = new EnvHandler();
+      $envArray = $env->fetchEnvValues();
+      $this->conn = $this->connect($envArray["serverName"], $envArray["userName"], $envArray["password"], $envArray["dbName"]);
       if ($this->conn->connect_error) {
         die("Connection failed: " . $this->conn->connect_error);
       }
@@ -108,17 +106,11 @@
      */
     public function fetchReaderList(string $userName) {
       $bucketList = "SELECT * FROM bucket_list WHERE username = '$userName' ORDER BY book_name ASC";
-      $response = [];
-      $result2 = $this->conn->query($bucketList);
-      if ($result2 && mysqli_num_rows($result2) > 0) {
-        $response["bucketList"] = $result2;
+      $result = $this->conn->query($bucketList);
+      if ($result && mysqli_num_rows($result) > 0) {
+        return $result;
       }
-      if (count($response)) {
-        return $response;
-      }
-      else {
-        return NULL;
-      }
+      return NULL;
     }
 
     /**

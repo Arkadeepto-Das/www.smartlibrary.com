@@ -1,4 +1,6 @@
 <?php
+  namespace application\model;
+  
   use Dotenv\Dotenv;
   /**
    * This class gives an array containing the credentials of the database.

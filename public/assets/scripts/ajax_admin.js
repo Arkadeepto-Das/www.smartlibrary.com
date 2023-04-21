@@ -5,9 +5,10 @@ $(document).ready(function() {
     var author = $('#author').val();
     var date = $('#date').val();
     $.ajax({
-      url: "admin.php",
+      url: "/admin",
       type: 'post',
       data: {
+        add : 1,
         bookId : bookId,
         bookName : bookName,
         author : author,

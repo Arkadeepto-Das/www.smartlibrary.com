@@ -24,6 +24,12 @@ body {
   font-weight: 400;
 }
 
-.container #list {
+tr {
+  display: flex;
+  width: 25rem;
+  justify-content: space-around;
+}
+
+th, td {
   font-family: 'Poppins', sans-serif;
 }

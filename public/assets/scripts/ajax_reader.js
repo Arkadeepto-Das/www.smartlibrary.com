@@ -1,9 +1,13 @@
 $(document).ready(function() {
   $.ajax({
-    url: "reader.php",
+    url: "/reader",
+    type: "post",
     datatype: "html",
+    data : {
+      list : 1
+    },
     success: function(data) {
-      $('#book_names').append(data);
+      $('.container').html(data);
     }
   });
 });
